@@ -1,18 +1,20 @@
 package com.thread;
 
 /**
- * 线程锁测试
+ * 线程锁测试<br/>
+ * 结果:线程出现了竟争<br/>
+ * 参考:http://lavasoft.blog.51cto.com/62575/99155/
  * 
  * @author copy4dev
  * @date 2016年9月3日
  *
  */
-public class ThreadLock implements Runnable {
+public class ThreadLockTest implements Runnable {
 
 	private Foo foo = new Foo();
 
 	public static void main(String[] args) {
-		ThreadLock r = new ThreadLock();
+		ThreadLockTest r = new ThreadLockTest();
 		Thread ta = new Thread(r, "Thread-A");
 		Thread tb = new Thread(r, "Thread-B");
 		ta.start();
