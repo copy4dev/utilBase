@@ -39,7 +39,6 @@ public class ThreadLockTest implements Runnable {
 	public int fix(int y) {
 		return foo.fix(y);
 	}
-
 }
 
 class Foo {
