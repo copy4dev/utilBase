@@ -9,14 +9,29 @@ import java.util.Scanner;
  * @date 2016年9月3日
  *
  */
+@SuppressWarnings("resource")
 public class SnackMatrix {
-	int n;
 
-	public SnackMatrix(int n) {
-		this.n = n;
+	public static void main(String[] args) {
+		SnackMatrix snake = new SnackMatrix();
+//		snake.print_v1();
+		snake.print_v2();
 	}
 
-	public void print() {
+	/**
+	 * 参考:http://www.oschina.net/code/snippet_2359471_49542
+	 */
+	public void print_v1() {
+		int number = 1;
+		for (int i = 1; i < 4; i++) {
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("请输入蛇形矩阵的阶数：");
+			number = scanner.nextInt();
+			print_v1_detail(number);
+		}
+	}
+
+	private void print_v1_detail(int n) {
 		int[][] data = new int[n][n];
 		data[0][0] = 1;
 		data[n - 1][n - 1] = n * n;
@@ -79,17 +94,45 @@ public class SnackMatrix {
 			}
 			System.out.println();
 		}// 结束显示，结束print方法，进入main方法
-	}// 结束构造方法
-
-	@SuppressWarnings("resource")
-	public static void main(String[] args) {
-		for (int i = 1; i < 4; i++) {
-			Scanner scanner = new Scanner(System.in);
-			System.out.println("请输入蛇形矩阵的阶数：");
-			int number = scanner.nextInt();
-			SnackMatrix snake = new SnackMatrix(number);
-			snake.print();
-		}
 	}
 
+	/**
+	 * 参考:http://blog.sina.com.cn/s/blog_c51875410102w9dn.html
+	 */
+	public void print_v2() {
+		System.out.println("请输入蛇形矩阵的阶数：");
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt(); // 首先输入矩阵的维数
+		int a[][] = new int[n][n]; // 存储所有元素的二维数组
+		int count = 1; // 计数器，每走一步加一
+
+		// 把二维数组从外到内一层一层剥开，按照上、右、下、左的顺序走
+		// 注意临界值条件,尤其是拐角别重叠覆盖
+
+		for (int i = 0; i < n / 2 + 1; i++) {
+			// up
+			for (int j = i; j < n - i; j++) {
+				a[i][j] = count++;
+			}
+			// right
+			for (int j = i + 1; j < n - i; j++) {
+				a[j][n - i - 1] = count++;
+			}
+			// down
+			for (int j = n - i - 2; j >= i; j--) {
+				a[n - i - 1][j] = count++;
+			}
+			// left
+			for (int j = n - i - 2; j > i; j--) {
+				a[j][i] = count++;
+			}
+		}
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				System.out.print(a[i][j] + "\t");
+				if (j == n - 1)
+					System.out.println();
+			}
+		}
+	}
 }
