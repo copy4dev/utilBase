@@ -100,7 +100,6 @@ class StringList {
 			return "emp";
 		}
 	}
-
 	// --- 法一 end ---
 
 	// --- 法二 start ---
