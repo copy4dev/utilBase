@@ -3,6 +3,7 @@ package com.file;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -410,7 +411,7 @@ public class FileUtil {
 	 * @return 如果创建成功，则返回true，否则返回false
 	 */
 	public static String[] createDirectory(String descDirName) {
-		String[] result=new String[2];
+		String[] result = new String[2];
 		String descDirNames = descDirName;
 		if (!descDirNames.endsWith(File.separator)) {
 			descDirNames = descDirNames + File.separator;
@@ -424,7 +425,7 @@ public class FileUtil {
 		// 创建目录
 		if (descDir.mkdirs()) {
 			result[0] = "1";
-			result[1] ="目录 " + descDirNames + " 创建成功!";
+			result[1] = "目录 " + descDirNames + " 创建成功!";
 			return result;
 		} else {
 			result[0] = "0";
@@ -459,5 +460,31 @@ public class FileUtil {
 //			logger.debug("文件 " + fileName + " 写入失败! " + e.getMessage());
 //		}
 //	}
+
+	/**
+	 * 把字符串写入文件<br/>
+	 * \r\n -> 换行
+	 * @param filePath 目标文件的绝对路径
+	 * @param content 文本内容
+	 * @param append 是否追加
+	 * @return
+	 */
+	public static String[] writeToFile(String filePath, String content, boolean append) {
+		String[] result = new String[2];
+		try {
+			// 打开一个写文件器
+			FileWriter writer = new FileWriter(filePath, append);
+			writer.write(content);
+			writer.close();
+			result[0] = "1";
+			result[1] = filePath + "写入成功";
+		} catch (IOException e) {
+			e.printStackTrace();
+			result[0] = "0";
+			result[1] = filePath + "写入失败";
+			return result;
+		}
+		return result;
+	}
 
 }
