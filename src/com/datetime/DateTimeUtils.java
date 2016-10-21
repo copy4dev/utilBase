@@ -69,6 +69,7 @@ public abstract class DateTimeUtils {
 	/**
 	 * Format the given millisecond to "yyyy-MM-dd HH:mm:ss.SSS" format string.<br/>
 	 * begain with 1970-01-01 08:00:00.000
+	 * 
 	 * @param millisecond
 	 * @return
 	 */
@@ -98,6 +99,7 @@ public abstract class DateTimeUtils {
 	/**
 	 * Format the given millisecond to "yyyy-MM-dd HH:mm:ss" format string.<br/>
 	 * begain with 1970-01-01 08:00:00.000
+	 * 
 	 * @param millisecond
 	 * @return
 	 */
@@ -129,6 +131,7 @@ public abstract class DateTimeUtils {
 	/**
 	 * Format the given millisecond to "yyyy-MM-dd" format string.<br/>
 	 * begain with 1970-01-01 08:00:00.000
+	 * 
 	 * @param millisecond
 	 * @return
 	 */
@@ -163,6 +166,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * parse date from string "yyyy-MM-dd HH:mm:ss.SSS"
+	 * 
 	 * @param dateStr
 	 * @return date
 	 * @throws ParseException
@@ -174,6 +178,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * parse date from string "yyyy-MM-dd HH:mm:ss"
+	 * 
 	 * @param dateStr
 	 * @return date
 	 * @throws ParseException
@@ -185,6 +190,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * parse date from string "yyyy-MM-dd"
+	 * 
 	 * @param dateStr
 	 * @return date
 	 * @throws ParseException
@@ -201,6 +207,7 @@ public abstract class DateTimeUtils {
 	/**
 	 * 获取给定日期所在周的前七天中的某一天<br/>
 	 * 以星期天为第一天
+	 * 
 	 * @param weekDay
 	 * @param end
 	 * @return
@@ -220,6 +227,7 @@ public abstract class DateTimeUtils {
 	/**
 	 * 获取当前日期所在周的前七天中的某一天<br/>
 	 * 以星期天为第一天
+	 * 
 	 * @param weekDay
 	 * @param end
 	 * @return
@@ -230,6 +238,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * 获取七天前的日期
+	 * 
 	 * @param end
 	 * @return
 	 */
@@ -244,6 +253,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * 获取昨天的日期
+	 * 
 	 * @return
 	 */
 	public static final Date getYesterday() {
@@ -254,6 +264,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * 获取前天的日期
+	 * 
 	 * @return
 	 */
 	public static final Date getTheDayBeforeYesterday() {
@@ -264,6 +275,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * 获取一小时前的时间日期
+	 * 
 	 * @param date
 	 * @return
 	 */
@@ -276,6 +288,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * 获取某段时间之前或之后的几个小时
+	 * 
 	 * @param date
 	 * @param hours
 	 * @return
@@ -293,6 +306,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * get the year form given date
+	 * 
 	 * @param date
 	 * @return
 	 */
@@ -304,6 +318,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * get the month form given date
+	 * 
 	 * @param date
 	 * @return
 	 */
@@ -315,6 +330,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * get the day form given date
+	 * 
 	 * @param date
 	 * @return
 	 */
@@ -326,6 +342,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * get the hour form given date
+	 * 
 	 * @param date
 	 * @return
 	 */
@@ -337,6 +354,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * get the minute form given date
+	 * 
 	 * @param date
 	 * @return
 	 */
@@ -348,6 +366,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * get the second form given date
+	 * 
 	 * @param date
 	 * @return
 	 */
@@ -359,6 +378,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * get the day of week which is begain with sunday form given date <br/>
+	 * 
 	 * @param date
 	 * @return
 	 */
@@ -370,6 +390,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * get the day from input from param
+	 * 
 	 * @param year
 	 * @param month
 	 * @param day
@@ -382,6 +403,7 @@ public abstract class DateTimeUtils {
 
 	/**
 	 * get the day from input from param
+	 * 
 	 * @param year
 	 * @param month
 	 * @param day
@@ -406,9 +428,10 @@ public abstract class DateTimeUtils {
 	 * @return
 	 */
 	public static final Date getDateTimeByDate(Date date, int calendarType, int qty) {
-		GregorianCalendar cal = getCalender(date);
-		cal.add(calendarType, qty);
-		return cal.getTime();
+		Calendar now = Calendar.getInstance();
+		now.setTime(date);
+		now.set(calendarType, now.get(calendarType) + qty);
+		return now.getTime();
 	}
 
 }
