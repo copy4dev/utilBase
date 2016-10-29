@@ -1,4 +1,4 @@
-package com.thread;
+package com.example.thread;
 
 import java.util.Collections;
 import java.util.LinkedList;

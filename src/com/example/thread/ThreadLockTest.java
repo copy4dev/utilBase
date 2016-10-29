@@ -1,4 +1,4 @@
-package com.thread;
+package com.example.thread;
 
 /**
  * 线程锁测试<br/>

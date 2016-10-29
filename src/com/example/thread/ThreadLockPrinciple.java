@@ -1,4 +1,4 @@
-package com.thread;
+package com.example.thread;
 
 import java.util.Random;
 import java.util.concurrent.locks.Condition;

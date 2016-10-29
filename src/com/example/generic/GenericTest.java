@@ -1,4 +1,4 @@
-package com.generic;
+package com.example.generic;
 
 /**
  * Java泛型小例子<br/>
