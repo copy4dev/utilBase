@@ -12,18 +12,18 @@ public class EncryptionUtil {
 
 	public static void main(String[] args) {
 
-		String string = "132";
+		String string = "123";
 
 		try {
 
-			System.out.println(getMD5(string));
-			System.out.println(getMD5(string, true));
-
-			System.out.println(getBase64Decode(string));
-
-			System.out.println(getTimeSpan(new Date()));
+			System.out.println(EncoderByMd5(string));
+			System.out.println(EncoderByMd5_32(string));
 
 			System.out.println(getSHA1(string));
+
+			System.out.println(getBase64Encode(string));
+
+			System.out.println(getTimeSpan(new Date()));
 
 		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
 			e.printStackTrace();
@@ -32,49 +32,27 @@ public class EncryptionUtil {
 	}
 
 	/**
-	 * 获取MD5密文
-	 * 
-	 * @param src
-	 * @param isCase 是否转小写字母
+	 * MD5加密(24位)
+	 * @param str
 	 * @return
+	 * @throws NoSuchAlgorithmException 没有MD5算法
+	 * @throws UnsupportedEncodingException 转utf-8异常
 	 */
-	public static String getMD5(String src, boolean isCase) {
-		if (isCase)
-			return DigestUtils.md5Hex(src);
-		else
-			return DigestUtils.md5Hex(src).toUpperCase();
+	public static String EncoderByMd5(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		// 确定计算方法
+		MessageDigest md5 = MessageDigest.getInstance("MD5");
+		// 加密后的字符串
+		String cipherText = Base64.encodeBase64String(md5.digest(str.getBytes("utf-8")));
+		return cipherText;
 	}
 
 	/**
-	 * 获取MD5密文
-	 * 
+	 * MD5加密(32位)
 	 * @param src
 	 * @return
-	 * @throws NoSuchAlgorithmException 算法获取失败
-	 * @throws UnsupportedEncodingException
 	 */
-	public static String getMD5(String src) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-
-		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
-
-		byte[] btInput = src.getBytes();
-		// 获得MD5摘要算法的 MessageDigest 对象
-		MessageDigest mdInst = MessageDigest.getInstance("MD5");
-		// 使用指定的字节更新摘要
-		mdInst.update(btInput);
-		// 获得密文
-		byte[] md = mdInst.digest();
-
-		// 把密文转换成十六进制的字符串形式
-		int j = md.length;
-		char str[] = new char[j * 2];
-		int k = 0;
-		for (int i = 0; i < j; i++) {
-			byte byte0 = md[i];
-			str[k++] = hexDigits[byte0 >>> 4 & 0xf];
-			str[k++] = hexDigits[byte0 & 0xf];
-		}
-		return new String(str);
+	public static String EncoderByMd5_32(String src) {
+		return DigestUtils.md5Hex(src);
 	}
 
 	/**
@@ -82,15 +60,19 @@ public class EncryptionUtil {
 	 * 
 	 * @param src
 	 * @return
+	 * @throws UnsupportedEncodingException 转utf-8异常
 	 */
-	public static String getBase64Decode(String src) {
-		return Base64.encodeBase64URLSafeString(src.getBytes());
+	public static String getBase64Encode(String src) throws UnsupportedEncodingException {
+		return Base64.encodeBase64String(src.getBytes("utf-8"));
 	}
 
 	/**
-	 * 获取时间戳
+	 * 获取毫秒级时间戳<br/>
+	 * 可通过取商进行调整
+	 *
 	 */
 	public static long getTimeSpan(Date time) {
+		// return System.currentTimeMillis() / 1000;
 		return System.currentTimeMillis();
 	}
 
