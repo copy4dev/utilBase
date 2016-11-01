@@ -427,11 +427,19 @@ public abstract class DateTimeUtils {
 	 * @param qty eg:+-X
 	 * @return
 	 */
-	public static final Date getDateTimeByDate(Date date, int calendarType, int qty) {
+	public static final Date getDateByOther(Date date, int calendarType, int qty) {
 		Calendar now = Calendar.getInstance();
 		now.setTime(date);
 		now.set(calendarType, now.get(calendarType) + qty);
 		return now.getTime();
+	}
+
+	/**
+	 * 获取格林尼治时间<br/>
+	 * 相差八小时
+	 */
+	public static Date getGreenwichMeanTime(Date date) {
+		return getDateByOther(date, Calendar.HOUR_OF_DAY, -8);
 	}
 
 }
