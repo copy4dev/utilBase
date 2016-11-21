@@ -8,6 +8,13 @@ import java.util.Date;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 
+/**
+ * 常规加密与时间戳
+ * 
+ * @author 1002360
+ * @date 2016年11月18日
+ *
+ */
 public class EncryptionUtil {
 
 	public static void main(String[] args) {
@@ -33,6 +40,7 @@ public class EncryptionUtil {
 
 	/**
 	 * MD5加密(24位)
+	 * 
 	 * @param str
 	 * @return
 	 * @throws NoSuchAlgorithmException 没有MD5算法
@@ -48,6 +56,7 @@ public class EncryptionUtil {
 
 	/**
 	 * MD5加密(32位)
+	 * 
 	 * @param src
 	 * @return
 	 */
