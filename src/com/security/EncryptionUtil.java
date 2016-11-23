@@ -23,13 +23,17 @@ public class EncryptionUtil {
 
 		try {
 
+			//MD5加密
 			System.out.println(EncoderByMd5(string));
 			System.out.println(EncoderByMd5_32(string));
 
+			//SHA1加密
 			System.out.println(getSHA1(string));
 
+			//Base64加密
 			System.out.println(getBase64Encode(string));
 
+			//时间戳
 			System.out.println(getTimeSpan(new Date()));
 
 		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
