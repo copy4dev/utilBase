@@ -441,5 +441,14 @@ public abstract class DateTimeUtils {
 	public static Date getGreenwichMeanTime(Date date) {
 		return getDateByOther(date, Calendar.HOUR_OF_DAY, -8);
 	}
+	
+	/**
+	 * 获取今天零点的日期
+	 * @return
+	 * @throws ParseException
+	 */
+	public static final Date getTodayDate() throws ParseException{
+		return parseDateFromDateStr(formatDate2DateStr(new Date()));
+	}
 
 }
